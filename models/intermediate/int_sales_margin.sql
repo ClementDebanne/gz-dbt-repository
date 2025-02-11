@@ -9,7 +9,7 @@ renamed as (
         date_date, 
         orders_id,
         CAST((quantity * purchase_price) AS int64) AS purchase_cost,
-        Round(revenue - (quantity * purchase_price),2) as margin  
+        Round(revenue - (quantity * purchase_price),2) as margin
     from source
 )
 
