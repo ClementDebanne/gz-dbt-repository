@@ -1,12 +1,14 @@
-with 
-source as (
-    select * from {{ ref("stg_raw__sales")}} as a
-    inner join {{ ref("stg_raw__product")}} as b 
-    using(products_id)
-)
-    select
-        *,
-        CAST((quantity * purchase_price) AS int64) AS purchase_cost,
-        Round(revenue - (quantity * purchase_price),2) as margin,
-    from source
+  -- int_sales_margin.sql
 
+  SELECT
+      products_id,
+      date_date,
+      orders_id,
+      revenue,
+      quantity,
+      purchase_price,
+      ROUND(s.quantity*p.purchase_price,2) AS purchase_cost,
+      ROUND(s.revenue - s.quantity*p.purchase_price, 2) AS margin
+  FROM {{ref("stg_raw__sales")}} s
+  LEFT JOIN {{ref("stg_raw__product")}} p
+      USING (products_id)

@@ -30,5 +30,15 @@
              tests:
                - unique
                - not_null
-                   
+       - name: adwords
+         identifier: raw_gz_adwords
+         columns:
+           - name: date_date
+             description: date of purchase
+       - name: bing 
+         identifier: raw_gz_bing 
+       - name: criteo 
+         identifier: raw_gz_criteo 
+       - name: facebook 
+         identifier: raw_gz_facebook          
 
